@@ -7,8 +7,9 @@ body {
 .container {
     background: linear-gradient(to bottom, #000000, #001c08);
     width: 100vw;
-    min-height: 100dvh;
+    min-height: 100vh;
     height: 100vh;
+    padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px;
     display: flex;
     flex-direction: column;
     padding: 20px;
