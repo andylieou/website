@@ -7,7 +7,7 @@ import './dog.css'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <img src="/milo.png" alt="doggy" className="doggy-sprite" />
-    <BouncingImage image="/sleepy.png"/>
+    {/* <BouncingImage image="/sleepy.png"/> */}
     <Chat />
   </React.StrictMode>
 )
