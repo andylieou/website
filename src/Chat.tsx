@@ -41,11 +41,9 @@ function Chat() {
       input.toLowerCase().includes("walk")
     ) {
       puppyResponse = "jump! jump! jump!";
-    } else if (
-        input.includes("?")
-    ){
-        puppyResponse = "tilts head"
-    }else {
+    } else if (input.includes("?")) {
+      puppyResponse = "tilts head";
+    } else {
       puppyResponse =
         doggyResponses[Math.floor(Math.random() * doggyResponses.length)];
     }
@@ -111,10 +109,7 @@ function Chat() {
           style={{ flex: 1, padding: "10px", fontSize: "16px" }}
           placeholder="Say something to Milo..."
         />
-        <button
-          onClick={handleSend}
-          style={{ padding: "10px 20px", fontSize: "16px", marginLeft: "10px" }}
-        >
+        <button className="chat-button" onClick={handleSend}>
           Send
         </button>
       </div>
