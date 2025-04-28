@@ -21,4 +21,12 @@ body {
     display: flex;
     flex-direction: column;
 }
-    
+
+.chat-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}    
