@@ -1,48 +1,48 @@
 import React, { useState } from 'react'
 import { ChatFeed, Message } from 'react-chat-ui'
+import "./App.css"
 
 function App() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState<string>('')
 
-  const doggyResponses = ['bark', 'jump', 'hump']
+  const doggyResponses = ['bark', 'jump', 'hump', 'woof']
 
   const handleSend = () => {
     if (input.trim() === '') return
 
-    // Add user's message
     const userMessage = new Message({
-      id: 0, // 0 = user
+      id: 0,
       message: input
     })
     setMessages(prev => [...prev, userMessage])
 
-    // Clear input
     setInput('')
 
-    // Doggy responds after a small delay
     setTimeout(() => {
       const randomResponse = doggyResponses[Math.floor(Math.random() * doggyResponses.length)]
       const doggyMessage = new Message({
-        id: 1, // 1 = doggy
+        id: 1,
         message: randomResponse
       })
       setMessages(prev => [...prev, doggyMessage])
-    }, 800) // 0.8 seconds later
+    }, 800)
   }
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="container">
       <h1>Talk to Doggy</h1>
 
-      <ChatFeed
-        messages={messages}
-        isTyping={false}
-        hasInputField={false}
-        showSenderName
-      />
+      <div style={{ flexGrow: 1, overflowY: 'auto', marginBottom: '10px' }}>
+        <ChatFeed
+          messages={messages}
+          isTyping={false}
+          hasInputField={false}
+          showSenderName
+        />
+      </div>
 
-      <div style={{ display: 'flex', marginTop: '20px' }}>
+      <div style={{ display: 'flex', marginTop: '10px' }}>
         <input
           value={input}
           onChange={e => setInput(e.target.value)}
