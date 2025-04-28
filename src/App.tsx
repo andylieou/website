@@ -58,6 +58,7 @@ function App() {
     }, 800);
   };
 
+  // scroll as messages pop up
   const bottomRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -95,6 +96,7 @@ function App() {
             </div>
           </div>
         ))}
+        {/* allows the page to autoscroll as the messages pop up */}
         <div ref={bottomRef}></div>
       </div>
 
