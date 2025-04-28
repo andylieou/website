@@ -102,6 +102,7 @@ function Chat() {
 
       <div style={{ display: "flex", marginTop: "10px" }}>
         <input
+          className="chat-text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {

@@ -31,4 +31,12 @@ html, body {
 .chat-wrapper {
     -ms-overflow-style: none;
     scrollbar-width: none;
-}    
+}
+
+.chat-text {
+    border-radius: 8px;
+}
+
+.chat-text:focus {
+    outline: none;
+}
