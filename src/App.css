@@ -25,7 +25,7 @@ body {
 @media (max-width: 768px) {
     .container {
         width: 100vw;
-        height: 100dvh;
+        height: 100svh;
         max-width: none;
         border-radius: 0;
     }
