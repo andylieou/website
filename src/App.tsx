@@ -6,7 +6,7 @@ function App() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState<string>('')
 
-  const doggyResponses = ['bark', 'jump', 'hump', 'woof']
+  const doggyResponses = ['bark', 'jump', 'hump', 'woof', 'grrr']
 
   const handleSend = () => {
     if (input.trim() === '') return
@@ -17,13 +17,22 @@ function App() {
     })
     setMessages(prev => [...prev, userMessage])
 
+    let puppyResponse = "";
+
+    if (input.toLowerCase().includes('hello') || input.toLowerCase().includes('hi')) {
+        puppyResponse = 'bark (hello)'
+    } else if (input.toLowerCase().includes('are you ready') || input.toLowerCase().includes('walk')) {
+        puppyResponse = 'jump! jump! jump!'
+    } else {
+        puppyResponse = doggyResponses[Math.floor(Math.random() * doggyResponses.length)];
+    }
+
     setInput('')
 
     setTimeout(() => {
-      const randomResponse = doggyResponses[Math.floor(Math.random() * doggyResponses.length)]
       const doggyMessage = new Message({
         id: 1,
-        message: randomResponse
+        message: puppyResponse
       })
       setMessages(prev => [...prev, doggyMessage])
     }, 800)
@@ -31,7 +40,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Talk to Doggy</h1>
+      <h1>Talk to Milo</h1>
 
       <div style={{ flexGrow: 1, overflowY: 'auto', marginBottom: '10px' }}>
         <ChatFeed
@@ -48,7 +57,7 @@ function App() {
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') handleSend() }}
           style={{ flex: 1, padding: '10px', fontSize: '16px' }}
-          placeholder="Say something to doggy..."
+          placeholder="Say something to Milo..."
         />
         <button
           onClick={handleSend}
