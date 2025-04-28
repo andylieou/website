@@ -41,7 +41,11 @@ function App() {
       input.toLowerCase().includes("walk")
     ) {
       puppyResponse = "jump! jump! jump!";
-    } else {
+    } else if (
+        input.includes("?")
+    ){
+        puppyResponse = "tilts head"
+    }else {
       puppyResponse =
         doggyResponses[Math.floor(Math.random() * doggyResponses.length)];
     }
