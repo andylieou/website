@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./App.css";
+import "./Chat.css";
 
 interface MyMessage {
   id: number;
   message: string;
 }
 
-function App() {
+function Chat() {
   const [messages, setMessages] = useState<MyMessage[]>([]);
   const [input, setInput] = useState<string>("");
 
@@ -121,4 +121,4 @@ function App() {
   );
 }
 
-export default App;
+export default Chat;
