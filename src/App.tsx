@@ -1,9 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChatFeed, Message } from "react-chat-ui";
 import "./App.css";
 
+interface MyMessage {
+  id: number;
+  message: string;
+}
+
 function App() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<MyMessage[]>([]);
   const [input, setInput] = useState<string>("");
 
   const doggyResponses = [
@@ -22,10 +26,7 @@ function App() {
   const handleSend = () => {
     if (input.trim() === "") return;
 
-    const userMessage = new Message({
-      id: 0,
-      message: input,
-    });
+    const userMessage = { id: 0, message: input };
     setMessages((prev) => [...prev, userMessage]);
 
     let puppyResponse = "";
@@ -48,15 +49,11 @@ function App() {
     setInput("");
 
     setTimeout(() => {
-      const doggyMessage = new Message({
-        id: 1,
-        message: puppyResponse,
-      });
+      const doggyMessage = { id: 1, message: puppyResponse };
       setMessages((prev) => [...prev, doggyMessage]);
     }, 800);
   };
 
-  // scroll as new messages appear
   const bottomRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -70,13 +67,30 @@ function App() {
         className="chat-wrapper"
         style={{ flexGrow: 1, width: "100%", overflowY: "auto" }}
       >
-        <ChatFeed
-          messages={messages}
-          isTyping={false}
-          hasInputField={false}
-          showSenderName
-        />
-        {/* dummy div to allow for scrolling */}
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              justifyContent: msg.id === 0 ? "flex-end" : "flex-start",
+              margin: "5px 0",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "70%",
+                padding: "10px",
+                borderRadius: "15px",
+                background: msg.id === 0 ? "#2196f3" : "#333",
+                color: "white",
+                fontSize: "16px",
+                wordBreak: "break-word",
+              }}
+            >
+              {msg.message}
+            </div>
+          </div>
+        ))}
         <div ref={bottomRef}></div>
       </div>
 
