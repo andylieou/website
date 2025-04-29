@@ -2,3 +2,5 @@ node_modules
 dist
 milo.csv
 milo_model
+predict.ipynb
+__pycache__
