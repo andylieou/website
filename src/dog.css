@@ -5,10 +5,10 @@
     }
     33% {
         top: 10%;
-        left: calc(100% - 80px);
+        left: calc(100% - 120px);
     }
     67% {
-        top: calc(100% - 80px);
+        top: calc(100% - 120px);
         left: 60%;
     }
     100% {
