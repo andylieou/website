@@ -6,6 +6,20 @@ interface MyMessage {
   message: string;
 }
 
+async function getPrediction(message: string) {
+  // this only works locally right now!
+  const response = await fetch("https://website-8prm.onrender.com/predict", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ text: message }),
+  });
+
+  const data = await response.json();
+  return data.prediction;
+}
+
 function Chat() {
   const [messages, setMessages] = useState<MyMessage[]>([]);
   const [input, setInput] = useState<string>("");
@@ -23,37 +37,31 @@ function Chat() {
     "tilts head",
   ];
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (input.trim() === "") return;
 
     const userMessage = { id: 0, message: input };
     setMessages((prev) => [...prev, userMessage]);
 
-    let puppyResponse = "";
-
-    if (
-      input.toLowerCase().includes("hello") ||
-      input.toLowerCase().includes("hi")
-    ) {
-      puppyResponse = "bark (hello)";
-    } else if (
-      input.toLowerCase().includes("are you ready") ||
-      input.toLowerCase().includes("walk")
-    ) {
-      puppyResponse = "jump! jump! jump!";
-    } else if (input.includes("?")) {
-      puppyResponse = "tilts head";
-    } else {
-      puppyResponse =
-        doggyResponses[Math.floor(Math.random() * doggyResponses.length)];
-    }
-
     setInput("");
 
-    setTimeout(() => {
-      const doggyMessage = { id: 1, message: puppyResponse };
-      setMessages((prev) => [...prev, doggyMessage]);
-    }, 800);
+    try {
+      const puppyResponse = await getPrediction(input);
+
+      setTimeout(() => {
+        const doggyMessage = { id: 1, message: puppyResponse };
+        setMessages((prev) => [...prev, doggyMessage]);
+      }, 800);
+    } catch (error) {
+      console.error("Error getting prediction:", error);
+      setTimeout(() => {
+        const doggyMessage = {
+          id: 1,
+          message: "error: could not get prediction",
+        };
+        setMessages((prev) => [...prev, doggyMessage]);
+      }, 800);
+    }
   };
 
   // scroll as messages pop up
