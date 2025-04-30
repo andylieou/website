@@ -12,3 +12,4 @@
 - [ ] train the model on more phrases
 - [ ] train the model on more unique names 
 - [ ] train the model on more data (of the existing phrases)
+- [ ] hello -> hump (not the correct response)
