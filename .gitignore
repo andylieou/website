@@ -5,3 +5,5 @@ milo_model
 predict.ipynb
 __pycache__
 generative_model
+backend/generative_model
+backend/generative_model.zip

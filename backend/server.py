@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from fastapi.middleware.cors import CORSMiddleware
 import torch
 import gdown
@@ -32,11 +32,11 @@ if not os.path.exists(model_dir):
     )
     print("Extracting model...")
     with zipfile.ZipFile(zip_path, "r") as zip_ref:
-        zip_ref.extractall(model_dir)
+        zip_ref.extractall(".")
     print("Model ready.")
 
-tokenizer = AutoTokenizer.from_pretrained(model_dir)
-model = AutoModelForCausalLM.from_pretrained(model_dir)
+model = GPT2LMHeadModel.from_pretrained("generative_model")
+tokenizer = GPT2Tokenizer.from_pretrained("generative_model")
 model.eval()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
