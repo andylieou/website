@@ -117,13 +117,20 @@ function Chat() {
       input.toLowerCase().includes("ruff")
     ) {
       const barks = ["woof", "bark", "ruff"];
-      const length = Math.floor(Math.random() * 5) + 1;
+      const length = Math.floor(Math.random() * 10) + 1;
 
       puppyResponse = Array.from(
         { length },
         () => barks[Math.floor(Math.random() * barks.length)]
       ).join(" ");
-    } else if (input.includes("?")) {
+    } else if (
+      input.includes("?") ||
+      input.toLowerCase().includes("why") ||
+      input.toLowerCase().includes("what") ||
+      input.toLowerCase().includes("where") ||
+      input.toLowerCase().includes("how") ||
+      input.toLowerCase().includes("who")
+    ) {
       puppyResponse = "tilts head";
     } else {
       puppyResponse =
