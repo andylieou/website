@@ -81,7 +81,8 @@ function Chat() {
       puppyResponse = "bark bark (hello)";
     } else if (
       input.toLowerCase().includes("are you ready") ||
-      input.toLowerCase().includes("walk")
+      input.toLowerCase().includes("walk") ||
+      input.toLowerCase().includes("ready")
     ) {
       puppyResponse = "jump! jump! jump!";
     } else if (
@@ -90,7 +91,7 @@ function Chat() {
       input.toLowerCase().includes("treat") ||
       input.toLowerCase().includes("teeth thing")
     ) {
-      puppyResponse = "tilts head with puppy eyes";
+      puppyResponse = "tilts head (I want)";
     } else if (
       input.toLowerCase().includes("good morning") ||
       input.toLowerCase().includes("goodmorning")
