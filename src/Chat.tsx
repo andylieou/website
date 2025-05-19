@@ -21,7 +21,10 @@ async function getPrediction(message: string) {
 }
 
 function Chat() {
-  const [messages, setMessages] = useState<MyMessage[]>([]);
+  const saved = localStorage.getItem("chatHistory");
+  const [messages, setMessages] = useState<MyMessage[]>(
+    saved ? JSON.parse(saved) : []
+  );
   const [input, setInput] = useState<string>("");
 
   const doggyResponses = [
@@ -146,6 +149,18 @@ function Chat() {
     }, 800);
   };
 
+  // state updates are async with react (not immediate). useEffect ensures this
+  // update occurs after the setMessages update occurs
+  useEffect(() => {
+    localStorage.setItem("chatHistory", JSON.stringify(messages));
+    // console.log("saved local history");
+  }, [messages]);
+
+  const handleClear = () => {
+    setMessages([]);
+    localStorage.removeItem("chatHistory");
+  };
+
   // scroll as messages pop up
   const bottomRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -188,7 +203,7 @@ function Chat() {
         <div ref={bottomRef}></div>
       </div>
 
-      <div style={{ display: "flex", marginTop: "10px" }}>
+      <div style={{ display: "flex", marginTop: "10px", gap: "3px"}}>
         <input
           className="chat-text"
           value={input}
@@ -201,6 +216,9 @@ function Chat() {
         />
         <button className="chat-button" onClick={handleSend}>
           Send
+        </button>
+        <button className="chat-button" onClick={handleClear}>
+          Clear
         </button>
       </div>
     </div>
