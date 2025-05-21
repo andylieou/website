@@ -169,8 +169,14 @@ function Chat() {
 
   return (
     <div className="container">
-      <h1>Milo</h1>
-
+      <h1 style={{ color: "black" }}>Milo</h1>
+      <div
+        style={{
+          borderColor: "black",
+          border: "1px solid black",
+          marginBottom: "8px",
+        }}
+      />
       <div
         className="chat-wrapper"
         style={{ flexGrow: 1, width: "100%", overflowY: "auto" }}
@@ -203,7 +209,7 @@ function Chat() {
         <div ref={bottomRef}></div>
       </div>
 
-      <div style={{ display: "flex", marginTop: "10px", gap: "3px"}}>
+      <div style={{ display: "flex", marginTop: "10px", gap: "3px" }}>
         <input
           className="chat-text"
           value={input}

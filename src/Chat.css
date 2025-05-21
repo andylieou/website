@@ -5,7 +5,7 @@ body {
   }
   
 .container {
-    background: linear-gradient(to bottom, #000000, #001c08);
+    background: white;
     width: 100vw;
     min-height: 100vh;
     height: 100vh;
